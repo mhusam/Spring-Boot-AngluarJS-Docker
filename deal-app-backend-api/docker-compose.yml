@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  docker-mysql:
+    restart: always
+    image: mysql/mysql-server
+    container_name: docker-database
+    ports:
+      - "3309:3309"
+    environment:
+      MYSQL_DATABASE: deals_schema
+      MYSQL_ROOT_PASSWORD: deals_password
+      MYSQL_ROOT_HOST: '%'
+      
+  deal-app-service:
+    image: docker-deal-app-backend-api
+    container_name: docker-backend
+    build:
+        context: .                        
+        dockerfile: Dockerfile
+    ports:
+        - "8088:8088"
+    restart: always
+    depends_on:
+        - docker-mysql
+    environment:
+        SPRING_DATASOURCE_URL: jdbc:mysql://172.24.176.1:3306/deals_schema?createDatabaseIfNotExist=true
+        SPRING_DATASOURCE_USERNAME: root
+        SPRING_DATASOURCE_PASSWORD: deals_password
+        
