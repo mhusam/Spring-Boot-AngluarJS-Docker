@@ -1,0 +1,56 @@
+<div class="list row">
+    <div class="col-md-8">
+        <div class="input-group mb-3">
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Search by deal id"
+                [(ngModel)]="dealId"
+                />
+            <div class="input-group-append">
+                <button
+                    class="btn btn-outline-secondary"
+                    type="button"
+                    (click)="searchDealId()"
+                    >
+                    Search
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h4>Deals List <small style="font-size: .475em;">(Deal Ids)</small></h4> 
+        <ul class="list-group">
+            <li
+                class="list-group-item"
+                *ngFor="let deal of deals; let i = index"
+                [class.active]="i == currentIndex"
+                (click)="setActiveDeal(deal, i)"
+                >
+                {{ deal.dealId }}
+            </li>
+        </ul>
+
+        <button class="m-3 btn btn-sm btn-danger" (click)="removeAllDeals()">
+            Remove All
+        </button>
+    </div>
+    <div class="col-md-6">
+        <div *ngIf="currentDeal">
+            <h4>Deal</h4>
+            <div><label><strong>UUID:</strong></label> {{ currentDeal.uuid }}</div>
+            <div><label><strong>Deal Id</strong></label> {{ currentDeal.dealId }}</div>
+            <div><label><strong>From Currency</strong></label> {{ currentDeal.fromCurrency }}</div>
+            <div><label><strong>To Currency</strong></label> {{ currentDeal.toCurrency }}</div>
+            <div><label><strong>Date Time</strong></label> {{ currentDeal.dateTime }}</div>
+            <div><label><strong>Amount</strong></label> {{ currentDeal.amount }}</div>
+
+            <a class="badge badge-warning" routerLink="/deals/{{ currentDeal.uuid }}">Edit</a>
+        </div>
+
+        <div *ngIf="!currentDeal">
+            <br />
+            <p>Please click on a Deal...</p>
+        </div>
+    </div>
+</div>

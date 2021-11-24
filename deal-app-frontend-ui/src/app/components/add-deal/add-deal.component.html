@@ -1,0 +1,70 @@
+<div>
+    <div class="submit-form">
+        <div *ngIf="!submitted">
+            <div class="form-group">
+                <label for="dealId">Deal Id</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="dealId"
+                    required
+                    [(ngModel)]="deal.dealId"
+                    name="dealId"
+                    />
+            </div>
+            <div class="form-group">
+                <label for="fromCurrency">From Currency</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="fromCurrency"
+                    required
+                    [(ngModel)]="deal.fromCurrency"
+                    name="fromCurrency"
+                    />
+            </div>
+            <div class="form-group">
+                <label for="toCurrency">To Currency</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="toCurrency"
+                    required
+                    [(ngModel)]="deal.toCurrency"
+                    name="toCurrency"
+                    />
+            </div>
+            <div class="form-group">
+                <label for="dateTime">DateTime</label>
+                <div ng-controller="Datepicker">
+                <input bsDatepicker [bsConfig]="{ isAnimated: true }"
+                    type="text"
+                    class="form-control"
+                    id="dateTime"
+                    required
+                    [(ngModel)]="deal.dateTime"
+                    name="dateTime"
+                    />
+            </div>
+            
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="amount"
+                    required
+                    [(ngModel)]="deal.amount"
+                    name="amount"
+                    />
+            </div>
+
+            <button (click)="saveDeal()" class="btn btn-success">Submit</button>
+        </div>
+
+        <div *ngIf="submitted">
+            <h4>Deal was submitted successfully!</h4>
+            <button class="btn btn-success" (click)="newDeal()">Add</button>
+        </div>
+    </div>
+</div>

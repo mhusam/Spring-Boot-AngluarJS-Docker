@@ -1,0 +1,73 @@
+<div>
+    <div *ngIf="currentDeal.uuid" class="edit-form">
+        <h4>Deal</h4>
+        <form>
+            <div class="form-group">
+                <label for="uuid">UUID</label>
+                <label id="uuid">{{ currentDeal.uuid }}</label>
+            </div>
+            <div class="form-group">
+                <label for="dealId">Deal Id</label>
+                <label id="dealId">{{ currentDeal.dealId }}</label>
+            </div>
+            <div class="form-group">
+                <label for="fromCurrency">From Currency</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="fromCurrency"
+                    [(ngModel)]="currentDeal.fromCurrency"
+                    name="fromCurrency"
+                    />
+            </div>
+            <div class="form-group">
+                <label for="toCurrency">From Currency</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="toCurrency"
+                    [(ngModel)]="currentDeal.toCurrency"
+                    name="toCurrency"
+                    />
+            </div>
+            <div class="form-group">
+                <label for="datetime">Date Time</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="datetime"
+                    [(ngModel)]="currentDeal.dateTime"
+                    name="datetime"
+                    />
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="amount"
+                    [(ngModel)]="currentDeal.amount"
+                    name="amount"
+                    />
+            </div>
+        </form>
+
+        <button class="badge badge-danger mr-2" (click)="deleteDeal()">
+            Delete
+        </button>
+
+        <button
+            type="submit"
+            class="badge badge-success mb-2"
+            (click)="updateDeal()"
+            >
+            Update
+        </button>
+        <p>{{ message }}</p>
+    </div>
+
+    <div *ngIf="!currentDeal.uuid">
+        <br />
+        <p>Cannot access this Deal...</p>
+    </div>
+</div>
